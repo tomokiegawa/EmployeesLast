@@ -1,5 +1,6 @@
 package com.example.domain.user.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,21 +14,30 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserMapper mapper;
-	
+
 	@Override
 	public void signup(MUser user) {
 		mapper.insertOne(user);
 	}
-	
 	@Override
 	public List<MUser> getUsers() {
 		return mapper.findMany();
 	}
-	
-//
-//	public List<MUser> getAllEmployees() {
-//		return mapper.findMany();
-//	}
-
-
+	/**ユーザー取得(１件)*/
+	public MUser getUserOne(int employeeId)  {
+		return mapper.findOne(employeeId);
+	}
+	/**ユーザー更新(１件)*/
+	public void updateUserOne(int employeeId,
+			 	String employeePass,
+			 	String employeeName,
+			 	String mail,
+			 	String phone,
+			 	Date anniversary) {
+		 mapper.updateOne(employeeId, employeePass, employeeName, mail, phone, anniversary);
+	 }
+	/**ユーザー削除(１件)*/
+	 public void deleteUserOne(int employeeId) {
+		mapper.deleteOne(employeeId);
+	}
 }
