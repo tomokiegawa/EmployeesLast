@@ -5,6 +5,16 @@
 
 <mapper namespace="com.example.repository.UserMapper">
     
+    <!-- マッピング定義(ユーザー) -->
+<resultMap type="com.example.domain.user.model.MUser" id="user">
+<id column="employee_id" property="employeeId" />
+<result column="employee_pass" property="employeePass" />
+<result column="employee_name" property="employeeName" />
+<result column="mail" property="mail" />
+<result column="phone" property="phone" />
+<result column="anniversary" property="anniversary" />
+</resultMap>
+    
     <!-- ユーザー登録 -->
     <insert id="insertOne">
         INSERT INTO employees (
@@ -27,4 +37,36 @@
     <select id="findMany" resultType="MUser">
         SELECT * from employees
     </select>
+    
+    <!-- ユーザー1件検索 -->
+<select id="findOne" parameterType="int" resultMap="user">
+select
+	*
+from
+employees
+where
+	employee_id = #{employeeId}
+</select>
+
+<!-- ユーザー1件更新 -->
+<update id="updateOne">
+	update
+		employees
+	set
+	employee_pass = #{employeePass},
+	employee_name = #{employeeName},
+	mail = #{mail},
+	phone = #{phone},
+	anniversary = #{anniversary}
+	where
+		employee_id = #{employeeId}
+</update>		
+		
+<!-- ユーザー1件削除 -->
+<delete id="deleteOne">
+	delete from
+		employees
+	where
+		employee_id = #{employeeId}	
+</delete>
 </mapper>
