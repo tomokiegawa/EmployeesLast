@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.user.model.MUser;
 import com.example.domain.user.service.impl.UserService;
+import com.example.form.RegistForm;
 import com.example.form.UserDetailForm;
 
 @Controller
@@ -62,12 +63,11 @@ public class UserDetailController {
 		// ユーザー⼀覧画⾯にリダイレクト
 					return "redirect:/index";
 					}
-		
 			/** ユーザー削除処理 */
-			@PostMapping(value = "/index", params = "delete")
-			public String deleteUser(UserDetailForm form, Model model) {
+			@PostMapping("/delete")
+			public String deleteUser(RegistForm form, Model model) {
 			    userService.deleteUserOne(form.getEmployeeId());
-			    model.addAttribute("userDetailForm",form);
 			    return "redirect:/index";
 			}
+			
 }

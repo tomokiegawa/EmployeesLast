@@ -60,12 +60,13 @@
 								</button>
 							</a>
 						</td>
-<!--							<td>-->
-<!--								<form method="post" th:action="@{/templates/delete}">-->
-<!--									<input type="hidden" th:field="*{employeeId}" th:value="${item.employeeId}">-->
-<!--									<button type="submit" name="delete" class="btn btn-outline-primary mt-4 mb-4" style="width: 60px;">削除</button>-->
-<!--								</form>-->
-<!--							</td>-->
+						<td>
+							<form method="post" th:action="@{/templates/delete}" th:object="${UserDetailForm}">
+								<input type="hidden" name="employeeId" th:value="${item.employeeId}">
+								<button type="submit" name="delete" class="btn btn-outline-primary mt-4 mb-4"
+									style="width: 60px;">削除</button>
+							</form>
+						</td>
 					</tr>
 				</tbody>
 			</table>
