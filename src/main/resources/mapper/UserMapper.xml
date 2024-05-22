@@ -4,69 +4,87 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.repository.UserMapper">
-    
-    <!-- マッピング定義(ユーザー) -->
-<resultMap type="com.example.domain.user.model.MUser" id="user">
-<id column="employee_id" property="employeeId" />
-<result column="employee_pass" property="employeePass" />
-<result column="employee_name" property="employeeName" />
-<result column="mail" property="mail" />
-<result column="phone" property="phone" />
-<result column="anniversary" property="anniversary" />
-</resultMap>
-    
-    <!-- ユーザー登録 -->
-    <insert id="insertOne">
-        INSERT INTO employees (
-            employee_id, 
-            employee_pass, 
-            employee_name, 
-            mail, 
-            phone, 
-            anniversary
-        ) VALUES (
-            #{employeeId}, 
-            #{employeePass}, 
-            #{employeeName}, 
-            #{mail}, 
-            #{phone}, 
-            #{anniversary}
-        )
-    </insert>
-    
-    <select id="findMany" resultType="MUser">
-        SELECT * from employees
-    </select>
-    
-    <!-- ユーザー1件検索 -->
-<select id="findOne" parameterType="int" resultMap="user">
-select
-	*
-from
-employees
-where
-	employee_id = #{employeeId}
-</select>
 
-<!-- ユーザー1件更新 -->
-<update id="updateOne">
-	update
+	<!-- マッピング定義(ユーザー) -->
+	<resultMap type="com.example.domain.user.model.MUser"
+		id="user">
+		<id column="employee_id" property="employeeId" />
+		<result column="employee_pass" property="employeePass" />
+		<result column="employee_name" property="employeeName" />
+		<result column="mail" property="mail" />
+		<result column="phone" property="phone" />
+		<result column="anniversary" property="anniversary" />
+	</resultMap>
+
+	<!-- ユーザー登録 -->
+	<insert id="insertOne">
+		INSERT INTO employees (
+		employee_id,
+		employee_pass,
+		employee_name,
+		mail,
+		phone,
+		anniversary
+		) VALUES (
+		#{employeeId},
+		#{employeePass},
+		#{employeeName},
+		#{mail},
+		#{phone},
+		#{anniversary}
+		)
+	</insert>
+
+	<!-- ユーザー複数権取得 -->
+	<select id="findMany"
+		resultType="com.example.domain.user.model.MUser">
+		SELECT *
+		FROM employees
+		<where>
+			<!-- employeeId が null でない場合の条件 -->
+			<if test="employeeId != null">
+				employee_id LIKE '%' || #{employeeId} || '%'
+			</if>
+			<!-- employeeName が null でない場合の条件 -->
+			<if test="employeeName != null">
+				AND employee_name LIKE '%' || #{employeeName} || '%'
+			</if>
+			<!-- anniversary が null でない場合の条件 -->
+			<if test="anniversary != null">
+				AND anniversary = #{anniversary, jdbcType=DATE}
+			</if>
+		</where>
+	</select>
+
+	<!-- ユーザー1件検索 -->
+	<select id="findOne" parameterType="int" resultMap="user">
+		select
+		*
+		from
 		employees
-	set
-	employee_pass = #{employeePass},
-	employee_name = #{employeeName},
-	mail = #{mail},
-	phone = #{phone},
-	anniversary = #{anniversary}
-	where
+		where
 		employee_id = #{employeeId}
-</update>		
-		
-<!-- ユーザー1件削除 -->
-<delete id="deleteOne">
-	delete from
+	</select>
+
+	<!-- ユーザー1件更新 -->
+	<update id="updateOne">
+		update
 		employees
-	where
-		employee_id = #{employeeId}	
-</delete>
+		set
+		employee_pass = #{employeePass},
+		employee_name = #{employeeName},
+		mail = #{mail},
+		phone = #{phone},
+		anniversary = #{anniversary}
+		where
+		employee_id = #{employeeId}
+	</update>
+
+	<!-- ユーザー1件削除 -->
+	<delete id="deleteOne">
+		delete from
+		employees
+		where
+		employee_id = #{employeeId}
+	</delete>
 </mapper>

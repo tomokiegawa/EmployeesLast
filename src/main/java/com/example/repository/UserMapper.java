@@ -13,8 +13,10 @@ public interface UserMapper {
 
 	/** ユーザー登録 */
 	public int insertOne(MUser user);
+	
 	/** ユーザー取得 */
-	public List<MUser> findMany();
+	public List<MUser> findMany(MUser user);
+	
 	/**ユ－ザー取得(１件)*/
 public MUser findOne(int employeeId);
 	

@@ -19,11 +19,10 @@ public class UserServiceImpl implements UserService {
 	public void signup(MUser user) {
 		mapper.insertOne(user);
 	}
-	@Override
-	public List<MUser> getUsers() {
-		return mapper.findMany();
+	public List<MUser> getUsers(MUser user) {
+		return mapper.findMany(user);
 	}
-	/**ユーザー取得(１件)*/
+	/**ユーザー取得(１件)*/ 
 	public MUser getUserOne(int employeeId)  {
 		return mapper.findOne(employeeId);
 	}

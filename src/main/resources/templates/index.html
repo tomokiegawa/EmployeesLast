@@ -25,9 +25,28 @@
 						style="width:100px;">新規登録</button>
 				</a>
 			</th>
+
 			<th style="text-align: right;">
-				<button type="button" class="mr-4 mt-4 mb-4 btn btn-outline-primary text-center"
-					style="width:60px;">検索</button>
+				<!-- 検索フォーム -->
+				<div class="mb-4">
+					<form id="user-search-form" method="post" th:action="@{/index}" class="form-inline"
+						th:object="${userListForm}">
+						<div class="form-group">
+							<label for="employeeId" class="mr-2">社員番号</label>
+							<input type="number" class="form-control" th:field="*{employeeId}" />
+						</div>
+						<div class="form-group mx-sm-3">
+							<label for="employeeName" class="mr-2">氏名</label>
+							<input type="text" class="form-control" th:field="*{employeeName}" />
+						</div>
+						<div class="form-group mx-sm-3">
+							<label for="anniversary" class="mr-2">入社記念日</label>
+							<input type="date" class="form-control" th:field="*{anniversary}" />
+						</div>
+						<button type="submit" class="mr-4 mt-4 mb-4 btn btn-outline-primary text-center"
+							style="width:60px;">検索</button>
+					</form>
+				</div>
 			</th>
 		</tr>
 	</table>
