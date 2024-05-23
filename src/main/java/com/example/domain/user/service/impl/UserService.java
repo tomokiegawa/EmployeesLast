@@ -11,13 +11,13 @@ public interface UserService {
 	public void signup(MUser user);
 	
 	/**ユーザー取得*/
-	public List<MUser> getUsers();
+	public List<MUser> getUsers(MUser user);
 	
 	/**ユーザー取得(１件)*/
- public MUser getUserOne(int employeeId);
+ public MUser getUserOne(String employeeId);
  
  /**ユーザー更新(１件)*/
- public void updateUserOne(int employeeId,
+ public void updateUserOne(String employeeId,
 		 	String employeePass,
 		 	String employeeName,
 		 	String mail,
@@ -25,5 +25,5 @@ public interface UserService {
 		 	Date anniversary);
  
  /**ユーザー削除(１件)*/
- public void deleteUserOne(int employeeId);
+ public void deleteUserOne(String employeeId);
 }

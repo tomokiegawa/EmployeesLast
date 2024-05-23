@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class UserDetailForm {
-		private int employeeId;
+		private String employeeId;
 		private String employeePass;
 		private String employeeName;
 		private String mail;

@@ -37,9 +37,9 @@ public class UserDetailController {
 		    }
 		
 			/** ユーザー編集画⾯を表⽰ */
-			@GetMapping("/edit/{employeeId}")
+			@GetMapping("/edit/{employeeId:.+}")
 			public String getUser(UserDetailForm form, Model model,
-			@PathVariable("employeeId") int employeeId)  {
+			@PathVariable("employeeId") String employeeId)  {
 			// ユーザーを1件取得
 			MUser user = userService.getUserOne(employeeId);
 			user.setEmployeePass(null);

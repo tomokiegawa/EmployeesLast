@@ -19,16 +19,15 @@ public class UserServiceImpl implements UserService {
 	public void signup(MUser user) {
 		mapper.insertOne(user);
 	}
-	@Override
-	public List<MUser> getUsers() {
-		return mapper.findMany();
+	public List<MUser> getUsers(MUser user) {
+		return mapper.findMany(user);
 	}
-	/**ユーザー取得(１件)*/
-	public MUser getUserOne(int employeeId)  {
+	/**ユーザー取得(１件)*/ 
+	public MUser getUserOne(String employeeId)  {
 		return mapper.findOne(employeeId);
 	}
 	/**ユーザー更新(１件)*/
-	public void updateUserOne(int employeeId,
+	public void updateUserOne(String employeeId,
 			 	String employeePass,
 			 	String employeeName,
 			 	String mail,
@@ -37,7 +36,7 @@ public class UserServiceImpl implements UserService {
 		 mapper.updateOne(employeeId, employeePass, employeeName, mail, phone, anniversary);
 	 }
 	/**ユーザー削除(１件)*/
-	 public void deleteUserOne(int employeeId) {
+	 public void deleteUserOne(String employeeId) {
 		mapper.deleteOne(employeeId);
 	}
 }
