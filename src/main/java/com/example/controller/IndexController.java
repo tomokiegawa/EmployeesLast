@@ -33,11 +33,9 @@ public class IndexController {
 		model.addAttribute("userList", userList);
 		return "index";
 	}
-
 	/** ユーザー検索処理 */
 	@PostMapping
 	public String postUserList(@ModelAttribute UserListForm form, Model model) {
-		
 		// ログを追加
 	    System.out.println("Form submitted: " + form);
 		
@@ -50,5 +48,4 @@ public class IndexController {
 		// ユーザー⼀覧画⾯を表⽰
 		return "index";
 	}
-
 }

@@ -3,7 +3,6 @@ package com.example.form;
 import java.util.Date;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -14,13 +13,13 @@ import lombok.Data;
 @Data
 public class RegistForm {
 
-	@NotNull(message = "{社員番号が入力されていません}")
-	@Min(value = 1, message = "{社員番号は1以上の値である必要があります}")
-	private int employeeId;
+	@NotBlank(message = "{社員番号が入力されていません}")
+	private String employeeId;
 
 	private String employeePass;
+	
 	@NotBlank(message = "{ユーザー名が入力されていません}")
-	private String employeeName;
+	private  String employeeName;
 
 	@Email(message = "{社員番号が入力されていません}")
 	private String mail;

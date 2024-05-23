@@ -6,15 +6,14 @@
 <mapper namespace="com.example.repository.UserMapper">
 
 	<!-- マッピング定義(ユーザー) -->
-	<resultMap type="com.example.domain.user.model.MUser"
-		id="user">
-		<id column="employee_id" property="employeeId" />
-		<result column="employee_pass" property="employeePass" />
-		<result column="employee_name" property="employeeName" />
-		<result column="mail" property="mail" />
-		<result column="phone" property="phone" />
-		<result column="anniversary" property="anniversary" />
-	</resultMap>
+<resultMap type="com.example.domain.user.model.MUser" id="user">
+    <id column="employee_id" property="employeeId" />
+    <result column="employee_pass" property="employeePass" />
+    <result column="employee_name" property="employeeName" />
+    <result column="mail" property="mail" />
+    <result column="phone" property="phone" />
+    <result column="anniversary" property="anniversary" />
+</resultMap>
 
 	<!-- ユーザー登録 -->
 	<insert id="insertOne">
@@ -36,18 +35,17 @@
 	</insert>
 
 	<!-- ユーザー複数権取得 -->
-	<select id="findMany"
-		resultType="com.example.domain.user.model.MUser">
+	<select id="findMany" resultType="com.example.domain.user.model.MUser">
 		SELECT *
 		FROM employees
 		<where>
 			<!-- employeeId が null でない場合の条件 -->
 			<if test="employeeId != null">
-				employee_id LIKE '%' || #{employeeId} || '%'
+				employee_id LIKE CONCAT('%', #{employeeId}, '%')
 			</if>
 			<!-- employeeName が null でない場合の条件 -->
 			<if test="employeeName != null">
-				AND employee_name LIKE '%' || #{employeeName} || '%'
+				AND employee_name LIKE CONCAT('%', #{employeeName}, '%')
 			</if>
 			<!-- anniversary が null でない場合の条件 -->
 			<if test="anniversary != null">
@@ -57,7 +55,7 @@
 	</select>
 
 	<!-- ユーザー1件検索 -->
-	<select id="findOne" parameterType="int" resultMap="user">
+	<select id="findOne" resultMap="user"> 
 		select
 		*
 		from

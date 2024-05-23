@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 public class UserListForm {
-	private int employeeId;
+	private String employeeId;
 	private String  employeeName;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date anniversary;

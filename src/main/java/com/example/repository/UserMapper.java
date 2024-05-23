@@ -13,21 +13,21 @@ public interface UserMapper {
 
 	/** ユーザー登録 */
 	public int insertOne(MUser user);
-	
+
 	/** ユーザー取得 */
 	public List<MUser> findMany(MUser user);
-	
+
 	/**ユ－ザー取得(１件)*/
-public MUser findOne(int employeeId);
-	
+	public MUser findOne(String employeeId);
+
 	/** ユーザー更新(1件) */
-	public void updateOne(@Param("employeeId") int employeeId,
-	@Param("employeePass") String employeePass,
-	@Param("employeeName") String employeeName,
-	@Param("mail")String mail,
-	@Param("phone")String phone,
-	@Param("anniversary")Date anniversary);
-	
+	public void updateOne(@Param("employeeId") String employeeId,
+			@Param("employeePass") String employeePass,
+			@Param("employeeName") String employeeName,
+			@Param("mail") String mail,
+			@Param("phone") String phone,
+			@Param("anniversary") Date anniversary);
+
 	/** ユーザー削除(1件) */
-	public int deleteOne(@Param("employeeId") int employeeId);
+	public int deleteOne(@Param("employeeId") String employeeId);
 }

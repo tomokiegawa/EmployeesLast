@@ -16,12 +16,12 @@
 
 <body>
 
-	<h2 class="ml-5 mt-2">人事データ一覧</h2>
+	<h2 class="ml-5 mt-2">社員情報一覧</h2>
 	<table class="table">
 		<tr>
 			<th>
 				<a href="/regist">
-					<button type="button" class="ml-4 mt-4 mb-4 btn btn-outline-primary btn-block text-center"
+					<button type="button" class="ml-4 mt-4 mb-4 btn btn-outline-primary btn-block text-center regist-button"
 						style="width:100px;">新規登録</button>
 				</a>
 			</th>
@@ -33,7 +33,7 @@
 						th:object="${userListForm}">
 						<div class="form-group">
 							<label for="employeeId" class="mr-2">社員番号</label>
-							<input type="number" class="form-control" th:field="*{employeeId}" />
+							<input type="text" class="form-control" th:field="*{employeeId}" />
 						</div>
 						<div class="form-group mx-sm-3">
 							<label for="employeeName" class="mr-2">氏名</label>
@@ -43,7 +43,7 @@
 							<label for="anniversary" class="mr-2">入社記念日</label>
 							<input type="date" class="form-control" th:field="*{anniversary}" />
 						</div>
-						<button type="submit" class="mr-4 mt-4 mb-4 btn btn-outline-primary text-center"
+						<button type="submit" class="mr-4 mt-4 mb-4 btn btn-outline-primary text-center regist-button"
 							style="width:60px;">検索</button>
 					</form>
 				</div>
@@ -60,8 +60,7 @@
 						<th scope="col" style="width: 20%;">氏名</th>
 						<th scope="col" style="width: 20%;">Eメール</th>
 						<th scope="col" style="width: 15%;">電話番号</th>
-						<th scope="col" style="width: 20%;">入社年月日</th>
-						<th scope="col" style="width: 40%;">あああああ</th>
+						<th scope="col" style="width: 20%;" colspan="3">入社年月日</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -73,8 +72,8 @@
 						<td th:text="${#dates.format(item.anniversary, 'yyyy/MM/dd')}"></td>
 						<td>
 							<a th:href="@{'/templates/edit/' + ${item.employeeId}}">
-								<button type="button" class="mr-4 mt-4 mb-4 btn btn-outline-primary text-center"
-									style="width:60px;">
+								<button type="button" class="mr-4 mt-4 mb-4 btn btn-outline-primary text-center edit-button"
+									style="width:60px;"> 
 									編集
 								</button>
 							</a>
@@ -82,7 +81,7 @@
 						<td>
 							<form method="post" th:action="@{/templates/delete}" th:object="${UserDetailForm}">
 								<input type="hidden" name="employeeId" th:value="${item.employeeId}">
-								<button type="submit" name="delete" class="btn btn-outline-primary mt-4 mb-4"
+								<button type="submit" name="delete" class="btn btn-outline-primary mt-4 mb-4 delete-button"
 									style="width: 60px;">削除</button>
 							</form>
 						</td>
