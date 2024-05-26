@@ -71,7 +71,7 @@
 						<td th:text="${item.phone}"></td>
 						<td th:text="${#dates.format(item.anniversary, 'yyyy/MM/dd')}"></td>
 						<td>
-							<a th:href="@{'/templates/edit/' + ${item.employeeId}}">
+							<a th:href="@{'/edit/' + ${item.employeeId}}">
 								<button type="button" class="mr-4 mt-4 mb-4 btn btn-outline-primary text-center edit-button"
 									style="width:60px;"> 
 									編集
